@@ -1,7 +1,6 @@
 package httpmodels
 
 import (
-    "time"
 )
 
 type Respose struct {
@@ -17,48 +16,43 @@ type Login struct {
 	Role     string `form:"role" json:"role" binding:"required"`
 }
 
-type Search struct {
-	Year    int     `form:"year" json:"year"`
-	Month   int     `form:"month" json:"month"`
-	Day     int     `form:"day" json:"day"`
-    Count   float64 `form:"count" json:"count"`
+type Month struct {
+	Month       int
 }
 
-type SearchResponse struct {
-	Year        int     `form:"year" json:"year"`
-	Month       int     `form:"month" json:"month"`
-	Day         int     `form:"day" json:"day"`
-    Count       float64 `form:"count" json:"count"`
-    Percentage  float64 `form:"percentage" json:"percentage"`
+type TypeWeaponResponse struct {
+	Month       int
+	TypeWeapon  [][]TypeWeapon
 }
 
-type SearchYearly struct {
-	Year    int     `form:"year" json:"year"`
-	Month   int     `form:"month" json:"month"`
-    Count   float64 `form:"count" json:"count"`
+type TypeWeapon struct {
+	Description     string
+	Count           float64
+    Percentage      float64
 }
 
-type SearchYearlyResponse struct {
-	Year        int     `form:"year" json:"year"`
-	Month       int     `form:"month" json:"month"`
-    Count       float64 `form:"count" json:"count"`
-    Percentage  float64 `form:"percentage" json:"percentage"`
+type TypeWeaponQuery struct {
+	Count           float64
+	Description     string
 }
 
-type AtentionResponse struct {
-	Date        time.Time   `form:"date" json:"date"`
-	Average     int     `form:"average" json:"average"`
+type BrandWeaponResponse struct {
+	Month       int
+	BrandWeapon  [][]BrandWeapon
 }
 
-type Minutes struct {
-	Minutes     int
+type BrandWeapon struct {
+	Description     string
+	Count           float64
+    Percentage      float64
 }
 
-type DateTime struct {
-	Date        time.Time
+type BrandWeaponQuery struct {
+	Count           float64
+	Description     string
 }
 
-type AffiliationResponse struct {
-	Nationality     string      `form:"nationality" json:"nationality"`
-	Count           int         `form:"count" json:"count"`
+type QuantityWeaponResponse struct {
+	Month       int
+	Count       int
 }

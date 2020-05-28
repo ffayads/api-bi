@@ -5,9 +5,9 @@ import (
 	"github.com/BI/api/helpers"
 )
 
-func GetKpiSearchs(c *gin.Context){
-    search, errMsg := helpers.GetSearchMonthly()
-    if search == nil {
+func GetKpiTypeWeapon(c *gin.Context){
+    data, errMsg := helpers.GetTypeWeapon()
+    if data == nil {
         c.JSON(200, gin.H{
 			"status": false,
 			"err":    "",
@@ -21,16 +21,16 @@ func GetKpiSearchs(c *gin.Context){
 			"err":    "",
 			"msg":    errMsg,
 			"data": gin.H{
-                "Search":  search,
+                "data":  data,
 			},
 		})
     }
     return
 }
 
-func GetKpiSearchsYearly(c *gin.Context){
-    search, errMsg := helpers.GetSearchYearly()
-    if search == nil {
+func GetKpiBrandWeapon(c *gin.Context){
+    data, errMsg := helpers.GetBrandWeapon()
+    if data == nil {
         c.JSON(200, gin.H{
 			"status": false,
 			"err":    "",
@@ -44,16 +44,16 @@ func GetKpiSearchsYearly(c *gin.Context){
 			"err":    "",
 			"msg":    errMsg,
 			"data": gin.H{
-                "Search":  search,
+                "data":  data,
 			},
 		})
     }
     return
 }
 
-func GetAffiliationByNationality(c *gin.Context){
-    affiliation, errMsg := helpers.GetAffiliationByNationality()
-    if affiliation == nil {
+func GetKpiQuantityWeapon(c *gin.Context){
+    data, errMsg := helpers.GetQuantityWeapon()
+    if data == nil {
         c.JSON(200, gin.H{
 			"status": false,
 			"err":    "",
@@ -67,30 +67,7 @@ func GetAffiliationByNationality(c *gin.Context){
 			"err":    "",
 			"msg":    errMsg,
 			"data": gin.H{
-                "affiliation":  affiliation,
-			},
-		})
-    }
-    return
-}
-
-func GetAtention(c *gin.Context){
-    atention, errMsg := helpers.GetAtention()
-    if atention == nil {
-        c.JSON(200, gin.H{
-			"status": false,
-			"err":    "",
-			"msg":    errMsg,
-			"data": gin.H{
-			},
-		})
-    } else {
-        c.JSON(200, gin.H{
-			"status": true,
-			"err":    "",
-			"msg":    errMsg,
-			"data": gin.H{
-                "atention":  atention,
+                "data":  data,
 			},
 		})
     }

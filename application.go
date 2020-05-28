@@ -114,10 +114,9 @@ func main() {
 	auth.GET("/refresh_token", authMiddleware.RefreshHandler)
 	auth.Use(authMiddleware.MiddlewareFunc())
 	{
-	    auth.POST("/Kpi/GetSearchs", controllers.GetKpiSearchs)
-	    auth.POST("/Kpi/GetSearchsYearly", controllers.GetKpiSearchsYearly)
-	    auth.POST("/Kpi/GetAtention", controllers.GetAtention)
-	    auth.POST("/Kpi/GetAffiliationByNationality", controllers.GetAffiliationByNationality)
+	    auth.POST("/Kpi/GetKpiTypeWeapon", controllers.GetKpiTypeWeapon)
+	    auth.POST("/Kpi/GetKpiBrandWeapon", controllers.GetKpiBrandWeapon)
+	    auth.POST("/Kpi/GetKpiQuantityWeapon", controllers.GetKpiQuantityWeapon)
 	}
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -151,6 +150,17 @@ func CORSMiddleware() gin.HandlerFunc {
 
 func Migrate(){
     db.DB.AutoMigrate(&models.Users{})
-    db.DB.AutoMigrate(&models.Personas{})
-    db.DB.AutoMigrate(&models.Registros{})
+    db.DB.AutoMigrate(&models.Company{})
+    db.DB.AutoMigrate(&models.Brands{})
+    db.DB.AutoMigrate(&models.Instruments{}).AddForeignKey("brands_id", "brands(id)", "RESTRICT", "RESTRICT")
+    db.DB.AutoMigrate(&models.TypeWeapons{})
+    db.DB.AutoMigrate(&models.TypePerformances{})
+    db.DB.AutoMigrate(&models.BarrelWeapons{})
+    db.DB.AutoMigrate(&models.BrandWeapons{})
+    db.DB.AutoMigrate(&models.CartridgeBrands{})
+    db.DB.AutoMigrate(&models.Reports{}).AddForeignKey("company_id", "company(id)", "RESTRICT", "RESTRICT").AddForeignKey("users_id", "users(id)", "RESTRICT", "RESTRICT")
+    db.DB.AutoMigrate(&models.ReportsConclusions{}).AddForeignKey("reports_id", "reports(id)", "RESTRICT", "RESTRICT")
+    db.DB.AutoMigrate(&models.Emp{}).AddForeignKey("reports_id", "reports(id)", "RESTRICT", "RESTRICT").AddForeignKey("type_weapons_id", "type_weapons(id)", "RESTRICT", "RESTRICT").AddForeignKey("brand_weapons_id", "brand_weapons(id)", "RESTRICT", "RESTRICT").AddForeignKey("barrel_weapons_id", "barrel_weapons(id)", "RESTRICT", "RESTRICT").AddForeignKey("type_performances_id", "type_performances(id)", "RESTRICT", "RESTRICT")
+    db.DB.AutoMigrate(&models.EmpImage{}).AddForeignKey("emp_id", "emp(id)", "RESTRICT", "RESTRICT")
+    db.DB.AutoMigrate(&models.EmpCartridge{}).AddForeignKey("emp_id", "emp(id)", "RESTRICT", "RESTRICT").AddForeignKey("cartridge_brands_id", "cartridge_brands(id)", "RESTRICT", "RESTRICT")
 }

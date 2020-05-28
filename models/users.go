@@ -10,4 +10,5 @@ type Users struct {
 	Email               string      `gorm:"unique_index:idx_email_role"`
 	Password            string      `gorm:"not null"`
 	Status              bool        `gorm:"not null"`
+	Phone               *string
 }

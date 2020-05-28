@@ -7,26 +7,20 @@ import (
 	"github.com/BI/api/httpmodels"
 )
 
-func GetSearchMonthly() (*[]httpmodels.SearchResponse, string) {
-    search := []httpmodels.SearchResponse{}
-    search = models.GetSearchMonthly()
-    return &search,""
+func GetTypeWeapon() (*[]httpmodels.TypeWeaponResponse, string) {
+    data := []httpmodels.TypeWeaponResponse{}
+    data = models.GetTypeWeapon()
+    return &data,""
 }
 
-func GetSearchYearly() (*[]httpmodels.SearchYearlyResponse, string) {
-    search := []httpmodels.SearchYearlyResponse{}
-    search = models.GetSearchYearly()
-    return &search,""
+func GetBrandWeapon() (*[]httpmodels.BrandWeaponResponse, string) {
+    data := []httpmodels.BrandWeaponResponse{}
+    data = models.GetBrandWeapon()
+    return &data,""
 }
 
-func GetAtention() (*[]httpmodels.AtentionResponse, string) {
-    search := []httpmodels.AtentionResponse{}
-    search = models.GetAtention()
-    return &search,""
-}
-
-func GetAffiliationByNationality() (*[]httpmodels.AffiliationResponse, string) {
-    search := []httpmodels.AffiliationResponse{}
-    search = models.GetAffiliation()
-    return &search,""
+func GetQuantityWeapon() (*[]httpmodels.QuantityWeaponResponse, string) {
+    data := []httpmodels.QuantityWeaponResponse{}
+    data = models.GetQuantityWeapon()
+    return &data,""
 }
